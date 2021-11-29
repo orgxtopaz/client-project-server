@@ -8,7 +8,7 @@ let User = require("./models/user_model");
 
 const app = express();
 
-const whitelist = ["https://orgclient.herokuapp.com/"]
+const whitelist = ["https://orgxtopaz-client.herokuapp.com"]
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.indexOf(origin) !== -1) {
