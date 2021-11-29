@@ -2,6 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 let User = require("./models/user_model");
 
@@ -505,6 +506,9 @@ connection.once("open", () => {
   console.log("MONGO DB CONNECTION ESTABLISHED! HINAMPAK");
 });
 
-app.listen(5000, () => {
-  console.log("Server is running in port:" + 5000);
+const port = process.env.PORT || 5000; // the port .env give port if 5000 already used
+
+
+app.listen(port, () => {
+  console.log("Server is running in port:" + port);
 });
