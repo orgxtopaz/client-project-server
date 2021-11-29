@@ -506,7 +506,7 @@ connection.once("open", () => {
   console.log("MONGO DB CONNECTION ESTABLISHED! HINAMPAK");
 });
 
-const port = process.env.PORT || 5000; // the port .env give port if 5000 already used
+const port = process.env.PORT || 3000; // the port .env give port if 5000 already used
 
 
 app.listen(port, () => {
