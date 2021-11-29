@@ -7,11 +7,24 @@ require("dotenv").config();
 let User = require("./models/user_model");
 
 const app = express();
- app.use(cors({
-    origin: `https://orgclient.herokuapp.com/`,  //react's address
-    credentials: true
-}));
+
+const whitelist = ["https://orgclient.herokuapp.com/"]
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    }
+  },
+  credentials: true,
+}
+app.use(cors(corsOptions))
+
+
+
 app.use(express.json()); // app use express.json
+
 // FOR THE VALIDATIONS
 const { body, validationResult } = require("express-validator");
 
@@ -508,7 +521,7 @@ connection.once("open", () => {
   console.log("MONGO DB CONNECTION ESTABLISHED! HINAMPAK");
 });
 
-const port = process.env.PORT || 3000; // the port .env give port if 5000 already used
+const port = process.env.PORT || 5000; // the port .env give port if 5000 already used
 
 
 app.listen(port, () => {
