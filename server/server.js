@@ -1,6 +1,7 @@
 
 const express = require("express");
-const cors = require("cors");
+const cors = require('express-cors')
+
 const mongoose = require("mongoose");
 require("dotenv").config();
 
@@ -8,13 +9,10 @@ let User = require("./models/user_model");
 
 const app = express();
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+const port = process.env.PORT || 5000; // the port .env give port if 5000 already used
 
 
+app.use(cors()); // migzapp will use cors
 
 app.use(express.json()); // app use express.json
 
@@ -514,7 +512,6 @@ connection.once("open", () => {
   console.log("MONGO DB CONNECTION ESTABLISHED! HINAMPAK");
 });
 
-const port = process.env.PORT || 5000; // the port .env give port if 5000 already used
 
 
 app.listen(port, () => {
